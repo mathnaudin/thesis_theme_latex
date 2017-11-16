@@ -83,6 +83,21 @@ Définir une commande dans un environnement nécessite un double \#\# lors de l'
 \section{Tests des environnements}
 
 \begin{verbatim}
+\newenvironment{mymathenv}%
+{
+  % liste des commandes dans l'environnement
+  \newcommand{\gf}[1]{\mathbb{F}_{##1}}
+  \newcommand{\gftwo}[1]{\mathbb{F}_{2^{##1}}}
+  \newcommand{\gfq}[1]{\mathbb{F}_{q^{##1}}}
+
+  \newcommand{\x}{\mathbf{x}}
+  \newcommand{\mbf}[1]{\mathbf{##1}}
+  \newcommand{\vect}[1]{##1_1, \ldots, ##1_n}
+}%
+{}
+
+
+
 \begin{mymathenv}
 Soit $\mbf{a} \in \gftwo{m}$. Soit $\x = (\vect{x}), \mbf{y} \in \mathbb{R}^n$.
 \end{mymathenv}
