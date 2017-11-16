@@ -1,0 +1,15 @@
+*.pdf
+*.toc
+*.nav
+*.aux
+*.bbl
+*.blg
+*.out
+*.nlo
+*.lot
+*.lof
+*.log
+*.maf
+*.mtc*
+
+.idea/
