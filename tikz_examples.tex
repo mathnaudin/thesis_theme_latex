@@ -1,33 +1,11 @@
-\title{AlgorithmTemplate}
-\documentclass[22pt, a4paper]{article}
-\usepackage{fullpage}
-\usepackage{times}
-\usepackage{fancyhdr,graphicx,amsmath,amssymb}
-\usepackage{amsthm}
-\usepackage{verbatim}
+\chapter{Utilisation de TikZ}
+\minitoc
 
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usetikzlibrary{arrows}
-\usetikzlibrary{shapes}
-\usetikzlibrary{positioning}
-
-\usepackage[ruled, vlined]{algorithm2e}%[ruled,vlined]
-%\include{pythonlisting}
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-
-
-\title{Exemples tikz}
-\author{Pascal Lefèvre}
-%\date{5 Octobre 2017}
-\begin{document}
-
-\maketitle
+Ceci est du text
 
 \section{Figure en traçant avec les coordonnées}
 
+Ceci est du text
 \begin{tikzpicture}
 \draw (0,0) -- (2,0) -- (2,1) -- (0,1) -- (0,0); %% on dessine le carré
 
@@ -43,6 +21,7 @@
 \end{tikzpicture}
 
 \section{Nommage des points}
+Ceci est du text
 
 \begin{tikzpicture}
 \coordinate (O) at (0,0) ;
@@ -58,6 +37,7 @@
 \end{tikzpicture}
 
 \section{Rectangle}
+Ceci est du text
 
 \begin{tikzpicture}
 \coordinate (A) at (1,0) ;
@@ -74,6 +54,7 @@
 
 
 \section{Noeuds}
+Ceci est du text
 
 \begin{tikzpicture}
 \draw (0,0) -- (4,1) node[midway,below] {$M$}
@@ -83,6 +64,7 @@
 
 
 \section{Coordonnées relatives}
+Ceci est du text
 
 \begin{tikzpicture}
 \draw (1,2) -- ++(1,1);
@@ -101,6 +83,7 @@
 \end{tikzpicture}
 
 \section{Décorations, styles, options graphiques}
+Ceci est du text
 %% colors : red, green, blue, cyan, yellow, magenta, black, white, gray
 %% gray!20 gray!40 gray!60 gray!80 gray!100
 \begin{tikzpicture}
@@ -130,6 +113,7 @@
 
 
 \section{Axes, grilles, fenêtre d'affichage}
+Ceci est du text
 
 \begin{center}
 \begin{tikzpicture}
@@ -170,6 +154,7 @@
 
 
 \section{Fenêtre d’affichage : clip}
+Ceci est du text
 
 
 
@@ -184,6 +169,7 @@
 
 
 \section{Représentations 3D}
+Ceci est du text
 \begin{tikzpicture}
 \draw (0,0,0)--(1,0,0)--(1,1,0)--(0,1,0)--cycle; % face arrière
 \draw (0,0,1)--(1,0,1)--(1,1,1)--(0,1,1)--cycle; % face avant
@@ -225,6 +211,7 @@
 
 
 \section{Représentation des données}
+Ceci est du text
 
 \newcommand{\nombresCopiesParNote}
 {(0,0)(1,0)(2,2)(3,0)(4,6)(5,4)(6,7)(7,4)(8,3)(9,0)(10,1)}
