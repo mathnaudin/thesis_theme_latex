@@ -1,0 +1,93 @@
+\chapter{Commandes et environnements}
+\minitoc
+
+
+\newpage
+\section{Crédits}
+
+\url{http://web.mat.bham.ac.uk/R.W.Kaye/latex/defining/defining.pdf}
+
+
+\url{https://tex.stackexchange.com/questions/16814/restrict-macro-to-an-environment}
+
+\section{Commandes}
+
+\newcommand{\seq}[2][n]{#2_{1},\ldots,#2_{#1}}
+Définition de la commande :
+\begin{verbatim}
+\newcommand{\seq}[2][n]{#2_{1},\ldots,#2_{#1}}
+\end{verbatim}
+
+
+Utilisation de la commande :
+\begin{verbatim}
+For some \(i \in \{ \seq{t} \} \) we have \( f(i)=\seq[m]{\alpha} \)
+\end{verbatim}
+donne :\\
+For some \(i \in \{ \seq{t} \} \) we have \( f(i)=\seq[m]{\alpha} \)
+
+\bigskip
+\par
+Les commandes peuvent être définies dans un environnement et celle-ci sont locales à l'environnement.
+
+\section{Environnements}
+
+\newenvironment{qsi}[1]%
+{\begin{quote}#1 wrote,\begin{sloppypar}\it}%
+{\end{sloppypar}\end{quote}}
+
+
+
+\newenvironment{quote2}[1]%
+{
+  \begin{quote}#1 wrote,\begin{sloppypar}\it
+  \newcommand{\gf}[1]{\mathbb{F}_{##1}}
+}%
+{
+  \end{sloppypar}\end{quote}
+}
+
+
+\bigskip
+\begin{verbatim}
+\newenvironment{qsi}[1]%
+{\begin{quote}#1 wrote,\begin{sloppypar}\it}%
+{\end{sloppypar}\end{quote}}
+\end{verbatim}
+donne :\\
+\begin{quote}{Pascal}
+I love finite fields !
+\end{quote}
+
+
+
+
+\begin{verbatim}
+\newenvironment{quote2}[1]%
+{
+  \begin{quote}#1 wrote,\begin{sloppypar}\it
+  \newcommand{\gf}[1]{\mathbb{F}_{##1}}
+}%
+{
+  \end{sloppypar}\end{quote}
+}
+\end{verbatim}
+donne :\\
+\begin{quote2}{Pascal}
+I love finite fields ! Let's play with $\gf{2^m}$
+\end{quote2}
+
+
+Définir une commande dans un environnement nécessite un double \#\# lors de l'appel de l'argument de la commande dans l'environnement.
+
+\section{Tests des environnements}
+
+\begin{verbatim}
+\begin{mymathenv}
+Soit $\mbf{a} \in \gftwo{m}$. Soit $\x = (\vect{x}), \mbf{y} \in \mathbb{R}^n$.
+\end{mymathenv}
+\end{verbatim}
+donne :\\
+\begin{mymathenv}
+Soit $\mbf{a} \in \gftwo{m}$. Soit $\x = (\vect{x}), \mbf{y} \in \mathbb{R}^n$.
+\end{mymathenv}
