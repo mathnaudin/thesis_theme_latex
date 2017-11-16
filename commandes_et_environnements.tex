@@ -12,13 +12,20 @@
 
 \section{Commandes}
 
+Template de la définition d'une commande :
+\begin{verbatim}
+\newcommand{\cmd_name}[nb_args]{ici se trouve le contenu de la commande
+et #2 et #1 sont les valeurs des arguments si nb_args >= 2}
+\end{verbatim}
+
+
 \newcommand{\seq}[2][n]{#2_{1},\ldots,#2_{#1}}
 Définition de la commande :
 \begin{verbatim}
 \newcommand{\seq}[2][n]{#2_{1},\ldots,#2_{#1}}
 \end{verbatim}
 
-
+La commande s'appelle avec \verb+\seq+ et possède deux arguments notés \verb+#1+ et \verb+#2+. Elle permet d'afficher un $n$-uplet (paramètre optionel \verb+[n]+).
 Utilisation de la commande :
 \begin{verbatim}
 For some \(i \in \{ \seq{t} \} \) we have \( f(i)=\seq[m]{\alpha} \)
@@ -53,11 +60,16 @@ Les commandes peuvent être définies dans un environnement et celle-ci sont loc
 \newenvironment{qsi}[1]%
 {\begin{quote}#1 wrote,\begin{sloppypar}\it}%
 {\end{sloppypar}\end{quote}}
+
+
+\begin{qsi}{Pascal}
+I love finite fields !
+\end{qsi}
 \end{verbatim}
 donne :\\
-\begin{quote}{Pascal}
+\begin{qsi}{Pascal}
 I love finite fields !
-\end{quote}
+\end{qsi}
 
 
 
@@ -71,6 +83,10 @@ I love finite fields !
 {
   \end{sloppypar}\end{quote}
 }
+
+\begin{quote2}{Pascal}
+I love finite fields ! Let's play with $\gf{2^m}$
+\end{quote2}
 \end{verbatim}
 donne :\\
 \begin{quote2}{Pascal}
