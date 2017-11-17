@@ -11,7 +11,17 @@
 
 \tableofcontents
 
-\part{Example de rédaction}
+\part{Exemple de rédaction}
+
+%% https://tex.stackexchange.com/questions/98203/can-i-test-if-a-file-exists
+\foreach \i in {0,...,20} % pour \i allant de 0 à 20
+{
+  % teste l'existence de chapitre\i.tex dans le repertoire courant
+  % s'il existe, la commande include le fichier
+  % sinon ne fait rien
+  \IfFileExists{./chapitre\i.tex}{\include{chapitre\i}}{}
+}
+
 
 \part{Outils de rédaction}
 
