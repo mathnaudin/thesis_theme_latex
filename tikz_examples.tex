@@ -164,6 +164,7 @@ lignes et styles, options graphiques :
 \newpage
 \section{Axes, grilles, fenêtre d'affichage}
 
+\subsection{Axes}
 \begin{verbatim}
 \draw[->] (-1,0) -- (1,0);
 \draw (1,0) node[right] {$x$};
@@ -202,11 +203,166 @@ lignes et styles, options graphiques :
 \draw [dashed] (0,1.5) -| (1.5,0);
 \end{tikzpicture}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{verbatim}
+  % definition des coordonnées
+  \coordinate (O) at (0,0) ;
+  \coordinate (e_T) at (3,2) ;
+  \coordinate (T) at (3,0) ;
+  \coordinate (Ox) at (4,0) ;
+  \coordinate (Oy) at (0,3) ;
+  \coordinate (E) at (0,2) ;
+  % traçage des axes
+  \draw[->,=>latex] (O) -- (Ox);
+  \draw[->,=>latex] (O) -- (Oy);
+  % traçage de la fonction e(t) = E, t < T
+  \draw (E) -- (e_T);           % valeur de e(t)
+  \draw[dashed] (e_T) -- (T); % pointillés à t = T
+  % ajout des notations
+  \draw (E) node[left]{$E$};
+  \draw (O) node[left,below]{$0$};
+  \draw (Oy) node[left]{$e(t)$};
+  \draw (Ox) node[below]{$t$};
+  \draw (T) node[below]{$T$};
+\end{verbatim}
+
+\begin{tikzpicture}
+  % definition des coordonnées
+  \coordinate (O) at (0,0) ;
+  \coordinate (e_T) at (3,2) ;
+  \coordinate (T) at (3,0) ;
+  \coordinate (Ox) at (4,0) ;
+  \coordinate (Oy) at (0,3) ;
+  \coordinate (E) at (0,2) ;
+  % traçage des axes
+  \draw[->,=>latex] (O) -- (Ox);
+  \draw[->,=>latex] (O) -- (Oy);
+  % traçage de la fonction e(t) = E, t < T
+  \draw (E) -- (e_T);           % valeur de e(t)
+  \draw[dashed] (e_T) -- (T); % pointillés à t = T
+  % ajout des notations
+  \draw (E) node[left]{$E$};
+  \draw (O) node[left,below]{$0$};
+  \draw (Oy) node[left]{$e(t)$};
+  \draw (Ox) node[below]{$t$};
+  \draw (T) node[below]{$T$};
+\end{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{verbatim}
+\begin{tikzpicture}
+    \begin{axis}[domain=0:1,legend pos=outer north east]
+    \addplot {sin(deg(x))};
+    \addplot {cos(deg(x))};
+    \addplot {x^2};
+    \legend{$\sin(x)$,$\cos(x)$,$x^2$}
+    \end{axis}
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{tikzpicture}
+    \begin{axis}[
+                domain=-2*pi:2*pi,
+                legend pos=outer north east,
+                xlabel=time $t$,
+                ylabel=function values,
+                title=Function plots,
+                ymin=-2, ymax=2,
+                ]
+    % plots
+    \addplot[red] {sin(deg(x))};
+    \addplot[green] {cos(deg(x))};
+%    \addplot {x^2};
+    \legend{$\sin(x)$,$\cos(x)$} %,$x^2$
+    \end{axis}
+\end{tikzpicture}
+
+
+\begin{verbatim}
+\begin{tikzpicture}[domain=0:4]
+    \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+    \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+    \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+    \draw[color=red]    plot (\x,\x)    node[right] {$f(x) =x$};
+    \draw[color=blue]   plot (\x,{sin(\x r)})   node[right] {$f(x) = \sin x$};
+    \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right]
+        {$f(x) = \frac{1}{20} \mathrm e^x$};
+\end{tikzpicture}
+\end{verbatim}
+
+
+\begin{tikzpicture}[domain=0:4]
+    \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+    \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+    \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+    \draw[color=red]    plot (\x,\x)    node[right] {$f(x) =x$};
+    \draw[color=blue]   plot (\x,{sin(\x r)})   node[right] {$f(x) = \sin x$};
+    \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right]
+        {$f(x) = \frac{1}{20} \mathrm e^x$};
+\end{tikzpicture}
+
+\newpage
+\subsection{Graphiques avec barres d'erreur}
+Crédits :\\
+\url{https://tex.stackexchange.com/questions/99315/specific-error-bars-in-pgfplots-possible}\\
+\url{https://tex.stackexchange.com/questions/200953/plotting-standard-error}
+\begin{verbatim}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  xmajorgrids=true, ymajorgrids=true,
+  height=10cm,
+  title={Error rates with $\Delta = 28$},
+  ylabel={Image Error Rate (IER)},
+  xlabel={$\sigma$},
+  axis x line=bottom, axis y line=left,
+  xmin=0, xmax=20, ymin=0, ymax=0.5,
+  ]
+  \addplot+[
+           mark=o,
+           red,
+           solid,
+           each nth point=1,
+           error bars/.cd,
+           y dir=both,
+           y explicit,
+           ] table[x=AV,y=ber,y error=ber_std]{data/data_sample.txt};
+  \addlegendentry{Binary Error Rate}
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  xmajorgrids=true, ymajorgrids=true,
+  height=10cm,
+  title={Error rates with $\Delta = 28$},
+  ylabel={Image Error Rate (IER)},
+  xlabel={$\sigma$},
+  axis x line=bottom, axis y line=left,
+  xmin=0, xmax=20, ymin=0, ymax=0.5,
+  ]
+  \addplot+[
+           mark=o,
+           red,
+           solid,
+           each nth point=1,
+           error bars/.cd,
+           y dir=both,
+           y explicit,
+           ] table[x=AV,y=ber,y error=ber_std]{data/data_sample.txt};
+  \addlegendentry{Binary Error Rate}
+\end{axis}
+\end{tikzpicture}
+
+
+
+\subsection{Grilles}
 \begin{verbatim}
 \draw [thin, gray, dotted] (0,0) grid (10,8);
 \draw (1,0) -- (3,2);
 \draw (3,2) node[fill=gray] {$(AB)$};
 \end{verbatim}
+
 
 \begin{tikzpicture}
 \draw [thin, gray, dotted] (0,0) grid (10,8);
@@ -229,6 +385,12 @@ lignes et styles, options graphiques :
 \begin{tikzpicture}
 \draw [thin, gray] (0,0) grid[step=0.1] (4,3);
 \end{tikzpicture}
+
+
+
+
+
+
 
 \newpage
 \section{Fenêtre d’affichage : clip}
