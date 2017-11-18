@@ -18,6 +18,11 @@
 * [16/11/2017] Added skeleton file (thesis.tex)
 
 
+## Latex 
+
+* [LaTeX bibliography styles](http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html)
+
+
 ## Miscellaneous
 
 ### Useful git commands
